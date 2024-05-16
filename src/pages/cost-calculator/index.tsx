@@ -26,15 +26,13 @@ export default function CostCalculator() {
       return null;
     }
 
-    return (
-      distanceDriven *
-      (consumption / 100) *
-      priceData.BenzineEuro95_1
-    ).toFixed(2);
+    return ((distanceDriven / consumption) * priceData.BenzineEuro95_1).toFixed(
+      2,
+    );
   }, [distanceDriven, consumption, priceData]);
 
   return (
-    <div className="   flex h-[100dvh] flex-col items-center justify-center bg-primary-foreground">
+    <div className="flex h-[100dvh] flex-col items-center justify-center bg-primary-foreground">
       <div className="min-w-2xl flex max-w-4xl flex-col gap-8">
         <div className="flex gap-4">
           <Card>
@@ -74,7 +72,7 @@ export default function CostCalculator() {
             />
           </div>
           <div>
-            <Label htmlFor="verbruik">Gemiddeld verbruik (l/100km)</Label>
+            <Label htmlFor="verbruik">Gemiddeld verbruik</Label>
             <Select
               onValueChange={(e) => setConsumption(Number(e))}
               defaultValue={"10"}
@@ -87,11 +85,14 @@ export default function CostCalculator() {
                   const number = index + 5;
                   return (
                     <SelectItem key={number} value={number.toString()}>
-                      {number}L (1 op {Math.round(100 / number)})
+                      1 op {number}
                     </SelectItem>
                   );
                 })}
               </SelectContent>
+              <p className="py-1 text-center text-xs italic text-muted-foreground">
+                Met 1 liter benzine kun je {consumption}km rijden
+              </p>
             </Select>
           </div>
         </div>
