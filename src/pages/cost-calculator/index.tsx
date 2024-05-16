@@ -24,8 +24,7 @@ export default function CostCalculator() {
 
 
   return (
-
-    <div className="flex min-h-screen justify-center items-center flex-col bg-primary-foreground">
+    <div className="flex h-[100dvh] justify-center items-center flex-col bg-primary-foreground">
       <div className="flex flex-col max-w-4xl min-w-2xl gap-8">
         <div className="flex gap-4">
           <Card>
@@ -50,6 +49,7 @@ export default function CostCalculator() {
             <Input
               type="number"
               id="km"
+              inputMode="numeric" pattern="[0-9]*"
               value={distanceDriven === 0 ? undefined : distanceDriven}
               onChange={(e) => setDistanceDriven(Number(e.target.value))}
             />
