@@ -11,7 +11,6 @@ const fetchBenzinePrijs = async () => {
   return prijzen[prijzen.length - 1];
 };
 
-
 export const useBenzinePrijs = () => {
   const { data, isLoading, isSuccess, isError } = useQuery(
     ["prijsmetingen"],

@@ -4,10 +4,10 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: '/tankplanner',
-        destination: 'https://www.tankplanner.nl',
+        source: "/tankplanner",
+        destination: "https://www.tankplanner.nl",
       },
-    ]
+    ];
   },
 };
 

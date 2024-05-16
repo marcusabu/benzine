@@ -11,12 +11,13 @@ const fetchPrices = async () => {
   return prices[prices.length - 1];
 };
 
-
 export const usePriceData = () => {
-  const { data: priceData, isLoading, isSuccess, isError } = useQuery(
-    ["priceData"],
-    fetchPrices
-  );
+  const {
+    data: priceData,
+    isLoading,
+    isSuccess,
+    isError
+  } = useQuery(["priceData"], fetchPrices);
 
   return {
     priceData,
