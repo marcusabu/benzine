@@ -4,25 +4,25 @@ import { TOpendataResponse } from "@/types";
 
 const fetchPrices = async () => {
   const response: TOpendataResponse = await axios.get(
-    "https://opendata.cbs.nl/ODataApi/odata/80416ned/TypedDataSet"
+    "https://opendata.cbs.nl/ODataApi/odata/80416ned/TypedDataSet",
   );
 
-  const prices = response.data.value;
-  return prices[prices.length - 1];
+  return response?.data?.value;
 };
 
 export const usePriceData = () => {
-  const {
-    data: priceData,
-    isLoading,
-    isSuccess,
-    isError
-  } = useQuery(["priceData"], fetchPrices);
+  const { data, isLoading, isSuccess, isError } = useQuery(
+    ["priceData"],
+    fetchPrices,
+  );
+
+  const priceData = data ? data.filter((_, index) => index % 100 === 0) : [];
 
   return {
     priceData,
+    currentPrice: priceData[priceData.length - 1],
     isLoading,
     isSuccess,
-    isError
+    isError,
   };
 };
