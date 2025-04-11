@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { usePriceData } from "@/hooks/usePriceData";
 import {
   Card,
+  CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
@@ -15,28 +16,30 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Line, LineChart, ResponsiveContainer } from "recharts";
 
 export default function CostCalculator() {
   const [distanceDriven, setDistanceDriven] = useState<number>();
   const [consumption, setConsumption] = useState(10);
-  const { priceData, isLoading, isSuccess } = usePriceData();
+  const { priceData, currentPrice, isLoading, isSuccess } = usePriceData();
 
   const totalCost = useMemo(() => {
-    if (!distanceDriven || !priceData?.BenzineEuro95_1) {
+    if (!distanceDriven || !currentPrice?.BenzineEuro95_1) {
       return null;
     }
 
-    return ((distanceDriven / consumption) * priceData.BenzineEuro95_1).toFixed(
-      2,
-    );
-  }, [distanceDriven, consumption, priceData]);
+    return (
+      (distanceDriven / consumption) *
+      currentPrice.BenzineEuro95_1
+    ).toFixed(2);
+  }, [distanceDriven, currentPrice?.BenzineEuro95_1, consumption]);
 
   return (
     <div className="flex h-[100dvh] flex-col items-center justify-center bg-primary-foreground">
-      <div className="min-w-2xl flex max-w-4xl flex-col gap-8">
-        <div className="flex gap-4">
+      <div className="w-2xl flex flex-col gap-8">
+        <div className="flex flex-col gap-4">
           <Card>
-            <CardHeader className="pb-6">
+            <CardHeader className="pb-0">
               <CardDescription>Benzine prijs</CardDescription>
               {isLoading && (
                 <CardTitle>
@@ -45,10 +48,23 @@ export default function CostCalculator() {
               )}
               {isSuccess && (
                 <CardTitle className="text-2xl">
-                  &euro; {priceData?.BenzineEuro95_1.toFixed(2)}
+                  &euro; {currentPrice?.BenzineEuro95_1.toFixed(2)}
                 </CardTitle>
               )}
             </CardHeader>
+            <CardContent className={"pb-0"}>
+              <ResponsiveContainer width={"100%"} height={40}>
+                <LineChart width={300} height={40} data={priceData}>
+                  <Line
+                    dot={false}
+                    type="monotone"
+                    dataKey="BenzineEuro95_1"
+                    stroke="hsl(var(--primary))"
+                    strokeWidth={1}
+                  />
+                </LineChart>
+              </ResponsiveContainer>
+            </CardContent>
           </Card>
           <Card>
             <CardHeader className="pb-6">
@@ -58,8 +74,6 @@ export default function CostCalculator() {
               </CardTitle>
             </CardHeader>
           </Card>
-        </div>
-        <div className="flex flex-col gap-4">
           <div>
             <Label htmlFor="km">Hoeveel kilometer gereden?</Label>
             <Input
