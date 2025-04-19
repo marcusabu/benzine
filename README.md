@@ -1,40 +1,74 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Benzine
 
-## Getting Started
+**Benzine** is een eenvoudige webapplicatie waarmee je kunt berekenen hoeveel jouw rit aan benzine kost.  
+Je voert het aantal gereden kilometers in, en de app rekent op basis van de actuele benzineprijs uit wat de rit je heeft gekost.
 
-First, run the development server:
+De benzineprijs wordt automatisch opgehaald via de officiële open data API van het CBS:  
+[https://opendata.cbs.nl/ODataApi](https://opendata.cbs.nl/ODataApi)
+
+---
+
+## 🚗 Functionaliteit
+
+- ✅ Vul het aantal gereden kilometers in
+- ⛽ Automatisch ophalen van de meest recente benzineprijs
+- 💸 Direct inzicht in je brandstofkosten
+- 🔒 Alleen ondersteuning voor **benzine** (geen diesel, elektrisch of hybride)
+
+---
+
+## ▶️ Project starten
+
+### 📦 Installatie
+
+1. Installeer afhankelijkheden:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+yarn
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Start de ontwikkelserver:
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+```bash
+yarn dev
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+De app is nu beschikbaar op [http://localhost:3000](http://localhost:3000)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### 🚀 Productiebouw
 
-## Learn More
+Wil je de app builden voor productie?
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+yarn build
+yarn start
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## 📡 Externe data
 
-## Deploy on Vercel
+Deze app gebruikt de open data API van het CBS voor de benzineprijzen:  
+[https://opendata.cbs.nl/ODataApi](https://opendata.cbs.nl/ODataApi)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Let op: de app is afhankelijk van beschikbaarheid van deze API.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+---
+
+## ⚠️ Beperkingen
+
+- Alleen benzine wordt ondersteund
+- Geen ondersteuning voor meerdere brandstoftypes of voertuigspecifieke verbruiksgegevens
+- De berekening gaat uit van een **vast gemiddeld verbruik** (in de code gedefinieerd)
+
+---
+
+## 🧾 Licentie
+
+MIT — gebruik deze app vrij voor eigen doeleinden of breid hem uit naar wens.
+
+---
+
+Veel plezier met rekenen!
