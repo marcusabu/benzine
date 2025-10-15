@@ -35,7 +35,7 @@ export default function CostCalculator() {
   }, [distanceDriven, currentPrice?.BenzineEuro95_1, consumption]);
 
   return (
-    <div className="flex h-[100dvh] flex-col items-center justify-center bg-primary-foreground">
+    <div className="flex h-[100dvh] flex-col items-center justify-center bg-background">
       <div className="w-2xl flex flex-col gap-8">
         <div className="flex flex-col gap-4">
           <Card>
